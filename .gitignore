@@ -1,0 +1,39 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE/Editor
+.vscode/
+.idea/
+*.code-workspace
+.sublime-project
+.sublime-workspace
+
+# Node.js (se usar ferramentas Node)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Dependências da web
+/dist/
+/build/
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+*.cache
+
+# Docker
+.docker/
+docker-compose.override.yml

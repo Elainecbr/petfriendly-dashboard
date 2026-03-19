@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!--
+    Configurações básicas do documento:
+    - charset UTF-8 para acentuação;
+    - viewport responsivo para boa renderização em desktop e mobile;
+    - título da aba do navegador;
+    - importação do CSS principal.
+  -->
+  <meta charset="UTF-8"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard PetFriendly</title>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <!--
+    Container principal da página.
+    Centraliza e organiza todo o dashboard.
+  -->
+  <main class="page">
+    <!--
+      Cabeçalho do sistema:
+      - elementos decorativos;
+      - título principal;
+      - subtítulo;
+      - texto de apresentação do propósito da aplicação.
+    -->
+    <header class="top">
+      <img
+        src="./img/flor.png"
+        alt="Flor decorativa"
+        class="deco-left"
+        onerror="this.style.display='none'"
+      />
+
+      <div class="top-center">
+        <h1>Dashboard PetFriendly</h1>
+        <p>Encontre locais pet friendly próximos com rota e distância.</p>
+
+        <p class="hero-text">
+          ENCONTRAR O LUGAR PERFEITO PARA CURTIR COM SEU MELHOR AMIGO PELUDO
+          FICOU MAIS FÁCIL DO QUE NUNCA! NOSSA API CONECTA VOCÊ AOS MELHORES
+          RESTAURANTES, PARQUES E HOTÉIS QUE DIZEM “SIM!” PARA OS PETS. SEJA
+          PARA UM CAFÉ À TARDE OU UMA VIAGEM INESQUECÍVEL, TEMOS OS DADOS QUE
+          MAPEIAM A FELICIDADE CANINA 🐕 (E FELINA 🐈) PERTO DE VOCÊ.
+        </p>
+      </div>
+
+      <img
+        src="./img/coracao.png"
+        alt="Corações decorativos"
+        class="deco-right"
+        onerror="this.style.display='none'"
+      />
+    </header>
+
+    <!--
+      Grade superior do dashboard:
+      - coluna esquerda: formulário, foto, rota e categorias;
+      - coluna central: lista de resultados;
+      - coluna direita: mapa.
+    -->
+    <section class="grid-top">
+      <!-- Coluna lateral esquerda -->
+      <aside class="left">
+        <!-- Card com foto principal do tema do projeto -->
+        <div class="card photo">
+          <img
+            src="./img/pets.jpg"
+            alt="Pets"
+            onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200'"
+          />
+        </div>
+
+        <!--
+          Formulário principal de busca.
+          Permite:
+          - digitar localização ou CEP;
+          - informar palavra-chave;
+          - escolher modo de transporte;
+          - iniciar ou limpar a busca.
+        -->
+        <div class="card form-box">
+          <label for="locationInput">Insira localização aqui:</label>
+          <input
+            id="locationInput"
+            type="text"
+            placeholder="Bairro, cidade ou CEP"
+          />
+
+          <div class="row2">
+            <input
+              id="keywordInput"
+              type="text"
+              value="pet friendly"
+              placeholder="Palavra-chave"
+            />
+
+            <select id="modeSelect">
+              <option value="walking">A pé</option>
+              <option value="driving">Carro</option>
+              <option value="bicycling">Bicicleta</option>
+              <option value="transit">Transporte</option>
+            </select>
+          </div>
+
+          <button id="searchBtn">Buscar local</button>
+          <button id="clearBtn" class="secondary">Nova busca - Limpar</button>
+        </div>
+
+        <!--
+          Card de apoio para mostrar o resumo da rota selecionada.
+          O conteúdo é atualizado dinamicamente via JavaScript.
+        -->
+        <div class="card info-box">
+          <h3>Aventura sem deixar ninguém para trás!</h3>
+          <p id="routeInfo">Aqui aparecerão distância e duração da rota.</p>
+        </div>
+
+        <!--
+          Filtro por categorias.
+          O botão abre/fecha a lista.
+          A lista é preenchida dinamicamente pela API /categories.
+        -->
+        <div class="card">
+          <button class="cat-toggle" id="catToggle">Categorias - Filtrar ▼</button>
+          <ul id="catList" class="cat-list hidden">
+            <li data-slug="todos" class="cat-item active">Todos</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Coluna central com resultados -->
+      <section class="center">
+        <div class="card">
+          <h2>LUGARES PRÓXIMOS (ordenado por relevância)</h2>
+
+          <!--
+            Lista de locais retornados pela busca.
+            Cada item é montado via JavaScript.
+          -->
+          <ul id="placesList" class="places-list"></ul>
+        </div>
+      </section>
+
+      <!-- Coluna direita com mapa -->
+      <aside class="right">
+        <div class="card">
+          <h2>MAPA INTERATIVO</h2>
+
+          <!--
+            Iframe com mapa embutido.
+            O src é atualizado pelo JavaScript ao clicar em "Ver no mapa" ou "Traçar rota".
+          -->
+          <iframe
+            id="mapFrame"
+            class="map"
+            src="https://maps.google.com/maps?q=Brasil&z=5&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </aside>
+    </section>
+
+    <!--
+      Grade inferior:
+      - bloco de clima;
+      - Easy Login;
+      - bloco promocional/decorativo.
+    -->
+    <section class="grid-bottom">
+      <!-- Card de clima -->
+      <div class="card clima-box">
+        <h2>🌦 CLIMA: CHOVENDO GATOS E CACHORROS? OU DÁ PRA DAR UMA VOLTINHA?</h2>
+
+        <div class="clima-grid">
+          <div class="clima-item">
+            <span>Temperatura ☀️</span>
+            <strong id="wTemp">—</strong>
+          </div>
+
+          <div class="clima-item">
+            <span>Probabilidade de chuva 🌧</span>
+            <strong id="wDesc">—</strong>
+          </div>
+
+          <div class="clima-item">
+            <span>Umidade Relativa</span>
+            <strong id="wHum">—</strong>
+          </div>
+        </div>
+
+        <!-- Ícone devolvido pela API de clima -->
+        <img id="wIcon" src="" alt="Ícone do clima" style="display: none; width: 60px" />
+      </div>
+
+      <!--
+        Easy Login:
+        - salva/atualiza usuário no backend;
+        - guarda os dados retornados no localStorage;
+        - permite associar favoritos ao usuário.
+      -->
+      <div class="card login-box">
+        <h2>FAÇA SEU EASY LOGIN – GUARDE SEUS FAVORITOS E RECEBA DICAS PARA O SEU PET!</h2>
+
+        <label for="loginName">NOME:</label>
+        <input id="loginName" type="text" placeholder="Seu nome" />
+
+        <label for="loginCpf">CPF:</label>
+        <input id="loginCpf" type="text" placeholder="000.000.000-00" />
+
+        <label for="loginPhone">TELEFONE:</label>
+        <input id="loginPhone" type="text" placeholder="(21) 99999-9999" />
+
+        <button id="loginBtn" type="button">Entrar</button>
+        <small id="loginMsg"></small>
+      </div>
+
+      <!-- Card decorativo/promocional -->
+      <div class="card promo-box">
+        <img
+          src="./img/pet2.jpg"
+          alt="Pet decorativo 1"
+          class="promo-img"
+          onerror="this.src='https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600'"
+        />
+
+        <p>
+          Encontrar o lugar perfeito para curtir com seu melhor amigo peludo
+          ficou mais fácil do que nunca!
+        </p>
+
+        <img
+          src="./img/pet3.png"
+          alt="Pet decorativo 2"
+          class="promo-img"
+          onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600'"
+        />
+      </div>
+    </section>
+  </main>
+
+  <!--
+    Ordem importante:
+    1) config.js define a URL da API;
+    2) script.js consome essa configuração.
+  -->
+  <script src="./config.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
