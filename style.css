@@ -32,7 +32,7 @@ img {
   max-width evita que a interface fique larga demais em telas grandes.
 */
 .page {
-  width: 100% !important;
+  width: 100%;
     overflow-x: hidden;
   max-width: 1360px;
   margin: 0 auto;
@@ -108,8 +108,9 @@ img {
 */
 .grid-top {
   display: grid;
-  grid-template-columns: minmax(260px, 310px) 1fr minmax(380px, 450px);
+  grid-template-columns: minmax(260px, 310px) minmax(0, 1fr) minmax(340px, 420px);
   gap: 12px;
+  align-items: start;
 }
 
 /*
