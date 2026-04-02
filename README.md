@@ -266,6 +266,16 @@ async function buscarLocais() { ... }
 | **ViaCEP API** | Conversão de CEP |
 | **Nginx** (Docker) | Web server |
 
+----
+
+<img width="783" height="406" alt="image" src="https://github.com/user-attachments/assets/bc97c073-9146-403f-8bf7-e1716226f779" />
+
+
+
+
+
+
+
 ---
 
 ## 🔍 Entendimento do fluxo
