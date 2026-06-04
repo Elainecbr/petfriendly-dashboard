@@ -1,7 +1,7 @@
 
 # PetFriendly MVP
 
-Este projeto é um sistema para busca de lugares pet-friendly, incluindo parques, praças e estabelecimentos, com funcionalidades de cálculo de distância e rotas. O sistema é dividido em duas partes principais: a API (Back-End) e o Dashboard (Front-End).
+Este projeto é um sistema para busca de lugares pet-friendly, incluindo parques, praças e estabelecimentos, com funcionalidades de cálculo de distância e rotas. O sistema é dividido em duas partes principais: a API (Back-End - https://github.com/Elainecbr/petfriendly-api) e o Dashboard (Front-End).
 <p align="center">
 <img width="337" height="479" alt="image" src="https://github.com/user-attachments/assets/7315fc8d-5461-4982-a33d-d06a2eae7937" />
 </p>
