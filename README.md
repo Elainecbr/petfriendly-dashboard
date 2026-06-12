@@ -27,6 +27,10 @@ Este é o Dashboard PetFriendly (Front-End).  Interface web para busca de locais
 ## 🎯 Objetivo
 
 Dashboard responsivo para o MVP PetFriendly que permite:
+
+- URL do dashboard (produção): [https://petfriendly-dashboard.onrender.com](https://petfriendly-dashboard.onrender.com)
+- URL da API (produção): [https://petfriendly-api.onrender.com](https://petfriendly-api.onrender.com)
+
 - ✅ Buscar locais pet friendly por localização
 - ✅ Filtrar por categoria
 - ✅ Visualizar no mapa (Google Maps)
@@ -43,7 +47,8 @@ Dashboard responsivo para o MVP PetFriendly que permite:
 petfriendly-dashboard/
 ├── index.html               # Página principal comentada
 ├── style.css                # Estilos responsivos comentados
-├── script.js                # Lógica JavaScript comentada
+├── app.js                   # Lógica JavaScript principal (produção)
+├── script.js                # Cópia de referência da lógica JavaScript
 ├── config.js                # Configuração da URL da API
 ├── img/
 │   ├── pets.jpg             # Foto principal
@@ -77,8 +82,9 @@ petfriendly-dashboard/
 - **Navegador moderno** (Chrome, Firefox, Safari, Edge)
 
 ### Passo 1: Clonar o repositório
+
 ```bash
-git clone https://github.com/SEU_USUARIO/petfriendly-dashboard.git
+git clone https://github.com/Elainecbr/petfriendly-dashboard.git
 cd petfriendly-dashboard
 ```
 
@@ -87,7 +93,7 @@ cd petfriendly-dashboard
 ls -la
 ```
 
-Deve aparecer: `index.html`, `style.css`, `script.js`, `config.js`, `img/`, `Dockerfile`, `docker-compose.yml`.
+Deve aparecer: `index.html`, `style.css`, `app.js`, `config.js`, `img/`, `Dockerfile`, `docker-compose.yml`.
 
 ---
 
