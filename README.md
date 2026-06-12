@@ -189,34 +189,44 @@ Ao fazer a busca, o **bloco de clima** será atualizado com:
 ## 🔌 Configuração da API
 
 ### Onde está configurado?
+
 Arquivo: `config.js`
 
 ```js
+const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
 window.APP_CONFIG = {
-  API_BASE_URL: "http://127.0.0.1:8000"
+  API_BASE_URL: isLocalhost ? "http://127.0.0.1:8000" : "https://petfriendly-api.onrender.com",
+  ENDPOINTS: {
+    SEARCH_PLACES: "/places/search",
+    GET_ROUTE: "/places/route",
+    FAVORITES: "/places/favorites"
+  }
 };
 ```
 
-### Como trocar URL?
-Se a API estiver em outro servidor (ex: produção), editar `config.js`:
+### Como a URL da API funciona?
 
-```js
-window.APP_CONFIG = {
-  API_BASE_URL: "https://api.meuprojeto.com"
-};
-```
+O arquivo `config.js` escolhe automaticamente a API local no desenvolvimento e a API publicada no Render em produção.
 
-### Verificar se API está rodando
+- Em local: `http://127.0.0.1:8000`
+- Em produção: `https://petfriendly-api.onrender.com`
+
+### Verificar se a API está rodando
+
 No navegador, acessar:
-- `http://127.0.0.1:8000/docs` (Swagger)
 
-Se retornar JSON, a API está online. ✅
+- `http://127.0.0.1:8000/docs` (Swagger)
+- `https://petfriendly-api.onrender.com/docs` (produção)
+
+Se retornar Swagger/JSON, a API está online. ✅
 
 ---
 
 ## 🎨 Responsividade
 
 O dashboard foi desenvolvido com **CSS responsivo**:
+
 - ✅ Desktop (1360px+)
 - ✅ Tablet (820px - 1200px)
 - ✅ Mobile (< 820px)
@@ -230,15 +240,19 @@ Teste redimensionando a janela ou abrindo em device móvel.
 Todos os arquivos (HTML, CSS, JS) estão **totalmente comentados**:
 
 ### HTML
-Seções, formulários, cards — cada elemento com sua função
+
+Seções, formulários, cards — cada elemento com sua função.
 
 ### CSS
-Classes, responsividade, grid — cada bloco com seu propósito
+
+Classes, responsividade, grid — cada bloco com seu propósito.
 
 ### JavaScript
-Funções de busca, rota, clima, login — cada fluxo explicado
+
+Funções de busca, rota, clima, login — cada fluxo explicado.
 
 Exemplo:
+
 ```js
 /*
   Faz a busca principal de locais.
@@ -257,7 +271,7 @@ async function buscarLocais() { ... }
 ## 🛠️ Tecnologias
 
 | Tecnologia | Função |
-|-----------|--------|
+| --- | --- |
 | **HTML5** | Estrutura semântica |
 | **CSS3** | Layout grid e responsividade |
 | **JavaScript Vanilla** | Lógica sem frameworks |
@@ -281,6 +295,7 @@ async function buscarLocais() { ... }
 ## 🔍 Entendimento do fluxo
 
 ### Fluxo de busca
+
 1. Usuário digita localização
 2. Frontend envia `GET /places/search` para API
 3. API consulta Google Places
@@ -289,6 +304,7 @@ async function buscarLocais() { ... }
 6. Frontend busca clima com `GET /weather`
 
 ### Fluxo de favorito
+
 1. Usuário faz Easy Login → `POST /users/easy-login`
 2. API cria/atualiza usuário no banco
 3. Frontend salva `user_id` no localStorage
